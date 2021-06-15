@@ -1,0 +1,57 @@
+@import "../../sass-submodules/sass/main.scss";
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body,
+div,
+ul,
+ol,
+dl,
+dt,
+dd,
+li,
+dl,
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+  // font: 12px/22px "\5B8B\4F53", Arial, Helvetica, sans-serif;
+}
+ol,
+ul,
+li {
+  list-style: none;
+}
+img {
+  border: 0;
+  vertical-align: middle;
+}
+body {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  width: 100vw;
+  color: #000000;
+  background: #fff;
+}
+.clear {
+  clear: both;
+  height: 1px;
+  width: 100%;
+  overflow: hidden;
+  margin-top: -1px;
+}
+a {
+  color: #000000;
+  text-decoration: none;
+}
+a:hover {
+  color: #ba2636;
+  text-decoration: underline;
+}
