@@ -1,18 +1,291 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="home">
+    <div class="top">
+      <div style="height: 40px; background: #2c393e"></div>
+      <el-menu
+        :default-active="activeName"
+        :unique-opened="true"
+        class="el-menu-demo"
+        mode="horizontal"
+        menu-trigger="click"
+        @select="handleSelect"
+      >
+        <el-menu-item index="Home">Dashboard</el-menu-item>
+        <el-submenu :popper-append-to-body="false" index="Lead">
+          <template slot="title">Leads</template>
+          <el-menu-item index="table">Table</el-menu-item>
+        </el-submenu>
+        <el-submenu :popper-append-to-body="false" index="Users">
+          <template slot="title">Contacts</template>
+          <el-menu-item index="3-1">选项1</el-menu-item>
+          <el-menu-item index="3-2">选项2</el-menu-item>
+          <el-menu-item index="3-3">选项3</el-menu-item>
+        </el-submenu>
+        <el-submenu :popper-append-to-body="false" index="4">
+          <template slot="title">Users</template>
+          <el-menu-item index="4-1">选项1</el-menu-item>
+          <el-menu-item index="4-2">选项2</el-menu-item>
+          <el-menu-item index="4-3">选项3</el-menu-item>
+        </el-submenu>
+        <el-submenu :popper-append-to-body="false" index="5">
+          <template slot="title">Groups</template>
+          <el-menu-item index="5-1">选项1</el-menu-item>
+          <el-menu-item index="5-2">选项2</el-menu-item>
+          <el-menu-item index="5-3">选项3</el-menu-item>
+        </el-submenu>
+        <el-submenu :popper-append-to-body="false" index="6">
+          <template slot="title">Access</template>
+          <el-menu-item index="6-1">选项1</el-menu-item>
+          <el-menu-item index="6-2">选项2</el-menu-item>
+          <el-menu-item index="6-3">选项3</el-menu-item>
+        </el-submenu>
+      </el-menu>
+    </div>
+    <div class="banner"></div>
+    <main>
+      <router-view></router-view>
+      <div class="right-sidebar">
+        <div class="today-tasks">
+          <header></header>
+          <div class="box">
+            <!-- <el-table
+              :data="tableData"
+              height="100%"
+              border
+              style="width: 100%"
+            >
+              <el-table-column prop="date" label="日期"> </el-table-column>
+              <el-table-column prop="name" label="姓名"> </el-table-column>
+              <el-table-column prop="address" label="地址"> </el-table-column>
+            </el-table> -->
+          </div>
+        </div>
+        <div class="hot-leads">
+          <header>Hot leads</header>
+          <div class="box">
+            <el-table
+              :data="tableData"
+              height="100%"
+              border
+              style="width: 100%"
+            >
+              <el-table-column prop="date" label="日期"> </el-table-column>
+              <el-table-column prop="name" label="姓名"> </el-table-column>
+              <el-table-column prop="address" label="地址"> </el-table-column>
+            </el-table>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      activeName: "1",
+      tableData: [
+        {
+          date: "2016-05-03",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄",
+          edit: false,
+        },
+        {
+          date: "2016-05-02",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄",
+          edit: false,
+        },
+        {
+          date: "2016-05-04",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄",
+          edit: false,
+        },
+        {
+          date: "2016-05-02",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄",
+          edit: false,
+        },
+        {
+          date: "2016-05-04",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄",
+          edit: false,
+        },
+        {
+          date: "2016-05-01",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄",
+          edit: false,
+        },
+      ],
+      ruleForm: {
+        FirstName: "",
+        region: "",
+        date1: "",
+        date2: "",
+        delivery: false,
+        type: [],
+        resource: "",
+        desc: "",
+      },
+    };
+  },
+  mounted() {
+    let path = this.$route.path.substr(1).split("/");
+    console.log(path);
+    if (path[1] == "Leads" || path[1] == "Users") {
+      this.activeName = path[2];
+    } else {
+      this.activeName = path[1];
+    }
+    this.getBreadcrumb();
+  },
+  watch: {
+    // $route(index) {
+    // let path = index.path.substr(1).split("/");
+    // if (path[1] == "userlist" || path[1] == "membership") {
+    //   this.activeName = path[2];
+    // } else {
+    //   this.activeName = path[1];
+    // }
+    // this.getBreadcrumb();
+    // },
+  },
+  methods: {
+    handleSelect(key) {
+      // console.log(this.$route);
+      // if (this.$route.name !== key) {
+      //   console.log(key, keyPath);
+
+      // }
+      this.$routerto(key);
+    },
+    getBreadcrumb() {
+      let matched = this.$route.matched.filter((item) => item.meta.title);
+      console.log(matched);
+      // const first = matched[0];
+      this.levelList = matched;
+    },
+  },
+};
+</script>
+<style lang="scss">
+#home {
+  .el-select-dropdown__empty{
+       font-size: 12px;
+  }
+  .el-menu--collapse .el-menu .el-submenu,
+  .el-menu--popup {
+    min-width: 100px;
+  }
+  .el-submenu .el-menu-item {
+    min-width: 100px;
+  }
+  .el-menu-item,
+  .el-submenu__title,
+  .el-select-dropdown__item {
+    font-size: 12px;
+    
+  }
+  .el-menu-demo {
+    height: 50px;
+    padding: 0 15px;
+  }
+  .el-menu--horizontal > .el-menu-item {
+    height: 50px;
+    line-height: 50px;
+  }
+  .el-menu--horizontal > .el-submenu .el-submenu__title {
+    height: 50px;
+    line-height: 50px;
   }
 }
-</script>
+</style>
+<style lang="scss" scoped>
+#home {
+  height: 100%;
+  .top {
+    width: 100%;
+    height: $Topheight;
+    // background: $BackgroundColor;
+  }
+  .banner {
+    width: 100%;
+    height: $gap-width;
+  }
+  main {
+    position: relative;
+    width: 100%;
+    height: calc(100% - #{$Topheight} - #{$gap-width});
+    overflow-y: auto;
+    .right-sidebar {
+      position: absolute;
+      left: $Sidebar-width + $main-width + $gap-width * 3;
+      font-size: 12px;
+      width: $Sidebar-width;
+      height: calc(100% - 30px);
+      header {
+        border-bottom: 1px solid #000000;
+        @include boxModel(
+          $width: 100%,
+          $height: 40px,
+          $background-color: #fff,
+          $padding: 0,
+          $margin: 0,
+          $box-sizing: "border-box"
+        );
+      }
+      box-sizing: border-box;
+      > div {
+        // flex: 1;
+        height: calc((100% - #{$gap-width}) / 2);
+        border: 1px solid #2c3e50;
+      }
+
+      div.box {
+        height: calc(100% - 40px);
+      }
+
+      div.today-tasks {
+        margin-bottom: $gap-width;
+      }
+    }
+  }
+  .right-sidebar {
+    position: absolute;
+    left: $Sidebar-width + $main-width + $gap-width * 3;
+    font-size: 12px;
+    width: $Sidebar-width;
+    height: calc(100% - 30px);
+    header {
+      border-bottom: 1px solid #000000;
+      @include boxModel(
+        $width: 100%,
+        $height: 40px,
+        $background-color: #fff,
+        $padding: 0,
+        $margin: 0,
+        $box-sizing: "border-box"
+      );
+    }
+    box-sizing: border-box;
+    > div {
+      // flex: 1;
+      height: calc((100% - #{$gap-width}) / 2);
+      border: 1px solid #2c3e50;
+    }
+
+    div.box {
+      height: calc(100% - 40px);
+    }
+
+    div.today-tasks {
+      margin-bottom: $gap-width;
+    }
+  }
+}
+</style>
