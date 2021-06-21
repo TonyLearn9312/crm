@@ -10,8 +10,8 @@ Vue.prototype.$routerto = function routerTo(name, obj) {
   this.$router.push({
     name: name,
     query: obj
-  })
-}
+  });
+};
 import pagevue from './views/common/pagevue.vue'
 Vue.component('pagevue', pagevue)
 new Vue({

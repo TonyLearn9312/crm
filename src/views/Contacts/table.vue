@@ -2,7 +2,7 @@
   <div id="users">
     <header>
       <div class="header-title">
-        <h3 class="users-tag">Leads</h3>
+        <h3 class="users-tag">Contacts</h3>
         <span class="el-icon-circle-plus"></span>
       </div>
       <!-- <div class="condition">
@@ -228,7 +228,7 @@ export default {
   methods: {
     fromchildren(data) {
       this.currentpage = data.currentpage;
-    //   this.changepage(data.currentpage, data.pagesize);
+      //   this.changepage(data.currentpage, data.pagesize);
     },
     deleteRow(index, rows) {
       // console.log(rows);
@@ -272,9 +272,12 @@ export default {
     },
     handleEdit(index, row) {
       console.log(index, row);
-     this.$router.push({ path: '/Home/Leads/Leads1/details' });
-    //   this.form = { name: "", tasks: [], leads: [], contacts: [] };
-    //   this.dialogFormVisible = true;
+      this.$router.push({
+        path: '/Home/Contacts/Contacts1/details',
+        query: { id: index },
+      });
+      //   this.form = { name: "", tasks: [], leads: [], contacts: [] };
+      //   this.dialogFormVisible = true;
     },
     handleDelete(index, row) {
       console.log(index, row);

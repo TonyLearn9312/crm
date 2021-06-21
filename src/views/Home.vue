@@ -5,21 +5,30 @@
       <el-menu
         :default-active="activeName"
         :unique-opened="true"
+        active-text-color="#2C393E"
         class="el-menu-demo"
         mode="horizontal"
         menu-trigger="click"
         @select="handleSelect"
       >
-        <el-menu-item index="Home">Dashboard</el-menu-item>
-        <el-submenu :popper-append-to-body="false" index="Lead">
+        <el-menu-item index="dashboard" @click="routerto('/Home/dashboard')"
+          >Dashboard</el-menu-item
+        >
+        <el-submenu :popper-append-to-body="false" index="Leads">
           <template slot="title">Leads</template>
-          <el-menu-item index="table">Table</el-menu-item>
+          <el-menu-item
+            @click="routerto('/Home/Leads/Leads1/table')"
+            index="Leads1"
+            >Table</el-menu-item
+          >
         </el-submenu>
-        <el-submenu :popper-append-to-body="false" index="Users">
+        <el-submenu :popper-append-to-body="false" index="Contacts">
           <template slot="title">Contacts</template>
-          <el-menu-item index="3-1">选项1</el-menu-item>
-          <el-menu-item index="3-2">选项2</el-menu-item>
-          <el-menu-item index="3-3">选项3</el-menu-item>
+          <el-menu-item
+            @click="routerto('/Home/Contacts/Contacts1/table')"
+            index="Contacts1"
+            >Table</el-menu-item
+          >
         </el-submenu>
         <el-submenu :popper-append-to-body="false" index="4">
           <template slot="title">Users</template>
@@ -46,7 +55,9 @@
       <router-view></router-view>
       <div class="right-sidebar">
         <div class="today-tasks">
-          <header></header>
+          <header @click="routerto('/Home/dashboard/tasks')">
+            <h3>Tasks</h3>
+          </header>
           <div class="box">
             <!-- <el-table
               :data="tableData"
@@ -61,7 +72,9 @@
           </div>
         </div>
         <div class="hot-leads">
-          <header>Hot leads</header>
+          <header @click="routerto('/Home/dashboard/leads')">
+            <h3>Hot leads</h3>
+          </header>
           <div class="box">
             <el-table
               :data="tableData"
@@ -83,7 +96,7 @@
 export default {
   data() {
     return {
-      activeName: "1",
+      activeName: "",
       tableData: [
         {
           date: "2016-05-03",
@@ -135,34 +148,30 @@ export default {
     };
   },
   mounted() {
-    let path = this.$route.path.substr(1).split("/");
-    console.log(path);
-    if (path[1] == "Leads" || path[1] == "Users") {
-      this.activeName = path[2];
-    } else {
-      this.activeName = path[1];
-    }
-    this.getBreadcrumb();
+      this.activeNameFun(this.$route)
+    // this.getBreadcrumb();
   },
   watch: {
-    // $route(index) {
-    // let path = index.path.substr(1).split("/");
-    // if (path[1] == "userlist" || path[1] == "membership") {
-    //   this.activeName = path[2];
-    // } else {
-    //   this.activeName = path[1];
-    // }
-    // this.getBreadcrumb();
-    // },
+    $route(index) {
+      this.activeNameFun(index)
+    },
   },
   methods: {
+    activeNameFun(route) {
+      let path = route.path.substr(1).split("/");
+      if (path[1] == "Leads" || path[1] == "Contacts") {
+        this.activeName = path[2];
+      } else {
+        this.activeName = path[1];
+      }
+    },
+    routerto(num) {
+      this.$router.push({ path: num });
+    },
     handleSelect(key) {
-      // console.log(this.$route);
-      // if (this.$route.name !== key) {
-      //   console.log(key, keyPath);
-
-      // }
-      this.$routerto(key);
+      console.log(key);
+      // this.activeName=key
+      // this.routerto(key);
     },
     getBreadcrumb() {
       let matched = this.$route.matched.filter((item) => item.meta.title);
@@ -175,8 +184,8 @@ export default {
 </script>
 <style lang="scss">
 #home {
-  .el-select-dropdown__empty{
-       font-size: 12px;
+  .el-select-dropdown__empty {
+    font-size: 12px;
   }
   .el-menu--collapse .el-menu .el-submenu,
   .el-menu--popup {
@@ -189,7 +198,6 @@ export default {
   .el-submenu__title,
   .el-select-dropdown__item {
     font-size: 12px;
-    
   }
   .el-menu-demo {
     height: 50px;
@@ -229,7 +237,7 @@ export default {
       width: $Sidebar-width;
       height: calc(100% - 30px);
       header {
-        border-bottom: 1px solid #000000;
+        border-bottom: 1px solid $borderColor;
         @include boxModel(
           $width: 100%,
           $height: 40px,
@@ -243,7 +251,7 @@ export default {
       > div {
         // flex: 1;
         height: calc((100% - #{$gap-width}) / 2);
-        border: 1px solid #2c3e50;
+        border: 1px solid $borderColor;
       }
 
       div.box {
@@ -262,7 +270,8 @@ export default {
     width: $Sidebar-width;
     height: calc(100% - 30px);
     header {
-      border-bottom: 1px solid #000000;
+      display: flex;
+      align-items: center;
       @include boxModel(
         $width: 100%,
         $height: 40px,
@@ -271,12 +280,16 @@ export default {
         $margin: 0,
         $box-sizing: "border-box"
       );
+      border-bottom: 1px solid $borderColor;
+      h3 {
+        padding-left: 20px;
+      }
     }
     box-sizing: border-box;
     > div {
       // flex: 1;
       height: calc((100% - #{$gap-width}) / 2);
-      border: 1px solid #2c3e50;
+      border: 1px solid $borderColor;
     }
 
     div.box {

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'  
+import Home from '../views/Home.vue'
 // import Lead from '../views/Leads/details'
 
 Vue.use(VueRouter)
@@ -9,23 +9,72 @@ const routes = [
     path: '/Home',
     name: 'Home',
     component: Home,
-    redirect:"/Home/Leads",
+    redirect: "/Home/dashboard",
     children: [
+      {
+        path: 'dashboard',
+        name: 'dashboard',
+        component: () => import(/* webpackChunkName: "about" */ '../views/dashboard.vue'),
+        redirect: "/Home/dashboard/leads",
+        children: [{
+          path: 'leads',
+          name: 'leads',
+          component: () => import(/* webpackChunkName: "about" */ '../views/Leads/details.vue')
+        }, {
+          path: 'tasks',
+          name: 'tasks',
+          component: () => import(/* webpackChunkName: "about" */ '../views/Contacts/details.vue')
+        },]
+      },
       {
         path: 'Leads',
         name: 'Leads',
         component: () => import(/* webpackChunkName: "about" */ '../views/Leads/leads.vue'),
-        redirect: "/Home/Leads/details",
+        redirect: "/Home/Leads/Leads1",
         children: [
           {
-            path: 'table',
-            name: 'table',
-            component: () => import(/* webpackChunkName: "about" */ '../views/Leads/table.vue')
+            path: 'Leads1',
+            name: 'Leads1',
+            component: () => import(/* webpackChunkName: "about" */ '../views/Leads/table_root.vue'),
+            redirect: "/Home/Leads/Leads1/table",
+            children: [
+              {
+                path: 'details',
+                name: 'details',
+                component: () => import(/* webpackChunkName: "about" */ '../views/Leads/details.vue')
+              },
+              {
+                path: 'table',
+                name: 'table',
+                component: () => import(/* webpackChunkName: "about" */ '../views/Leads/table.vue')
+              }
+            ],
           },
+        ],
+      },
+      {
+        path: 'Contacts',
+        name: 'Contacts',
+        component: () => import(/* webpackChunkName: "about" */ '../views/Contacts/contacts.vue'),
+        redirect: "/Home/Contacts/Contacts1",
+        children: [
           {
-            path: 'details',
-            name: 'details',
-            component: () => import(/* webpackChunkName: "about" */ '../views/Leads/details.vue')
+            path: 'Contacts1',
+            name: 'Contacts1',
+            component: () => import(/* webpackChunkName: "about" */ '../views/Contacts/table_root.vue'),
+            redirect: "/Home/Contacts/Contacts1/table",
+            children: [
+              {
+                path: 'table',
+                name: 'table',
+                component: () => import(/* webpackChunkName: "about" */ '../views/Contacts/table.vue')
+              },
+              {
+                path: 'details',
+                name: 'details',
+                component: () => import(/* webpackChunkName: "about" */ '../views/Contacts/details.vue')
+              },
+            ],
           },
         ],
       },
@@ -54,7 +103,7 @@ const routes = [
 ]
 const originalReplace = VueRouter.prototype.push;
 VueRouter.prototype.push = function replace(location) {
-    return originalReplace.call(this, location).catch(err => err);
+  return originalReplace.call(this, location).catch(err => err);
 };
 const router = new VueRouter({
   mode: 'history',

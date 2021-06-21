@@ -126,29 +126,29 @@
               <el-input v-model="ruleForm.LastName"></el-input>
             </el-form-item>
             <el-form-item class="DOB-title">
-              <!-- <el-col :span="6">DOB</el-col> -->
-              <!-- <el-col :span="8"> -->
-              <el-form-item label="DOB">
-                <el-date-picker
-                  type="date"
-                  placeholder="选择日期"
-                  v-model="ruleForm.Dob"
-                ></el-date-picker>
-              </el-form-item>
-              <!-- </el-col> -->
-              <!-- <el-col :span="2">Title</el-col>
-              <el-col :span="8"> -->
-              <el-form-item class="Title" label="Title">
-                <el-select
-                  :popper-append-to-body="false"
-                  v-model="ruleForm.title"
-                  placeholder="请选择"
-                >
-                  <el-option label="Mr" value="shanghai"></el-option>
-                  <el-option label="Miss" value="beijing"></el-option>
-                </el-select>
-              </el-form-item>
-              <!-- </el-col> -->
+              <el-col :span="6">DOB</el-col>
+              <el-col :span="8">
+                <el-form-item>
+                  <el-date-picker
+                    type="date"
+                    placeholder="选择日期"
+                    v-model="ruleForm.Dob"
+                  ></el-date-picker>
+                </el-form-item>
+              </el-col>
+              <el-col :span="2">Title</el-col>
+              <el-col :span="8">
+                <el-form-item>
+                  <el-select
+                    :popper-append-to-body="false"
+                    v-model="ruleForm.title"
+                    placeholder="请选择"
+                  >
+                    <el-option label="Male" value="shanghai"></el-option>
+                    <el-option label="Female" value="beijing"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
             </el-form-item>
             <el-form-item label="Lead owner">
               <el-select
@@ -161,10 +161,10 @@
               </el-select>
             </el-form-item>
             <el-form-item class="Email" label="Email">
-              <el-form-item prop="Email1">
+              <el-form-item prop="Email">
                 <el-input v-model="ruleForm.Email1"></el-input>
               </el-form-item>
-              <el-form-item prop="Email2">
+              <el-form-item prop="Email">
                 <el-input v-model="ruleForm.Email2"></el-input>
               </el-form-item>
             </el-form-item>
@@ -196,9 +196,9 @@
                 <el-option label="区域二" value="beijing"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="BY" prop="type">
+            <!-- <el-form-item label="BY" prop="type">
               <el-input v-model="ruleForm.name"></el-input>
-            </el-form-item>
+            </el-form-item> -->
             <el-form-item label="Local time" prop="type">
               <el-date-picker
                 type="date"
@@ -240,7 +240,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="Timeassigned" prop="type">
-              <div style="width: 200px">sdfdsf</div>
+              <div style="width: 200px">{{ ruleForm.name }}</div>
             </el-form-item>
             <el-form-item label="Timer" prop="type">
               <div style="width: 200px">sdfdsf</div>
@@ -343,15 +343,47 @@
       </div>
       <div class="demoAccount">
         <header>
-          <h3>Demo account</h3>
+          <el-dropdown @command="handleCommand" placement="bottom-start">
+            <span class="el-dropdown-link">
+              <span>{{ demoAccount }}</span>
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="Live account"
+                ><h3>Live account</h3></el-dropdown-item
+              >
+              <el-dropdown-item command="Demo account"
+                ><h3>Demo account</h3></el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </el-dropdown>
+          <!-- <h3>Demo account</h3> -->
         </header>
         <div class="box">
-          <el-table :data="tableData" height="100%" border style="width: 100%">
+          <el-table
+            v-show="demoAccount == 'Live account'"
+            :data="tableData"
+            height="100%"
+            border
+            style="width: 100%"
+          >
             <el-table-column prop="date" label="日期" width="180">
             </el-table-column>
             <el-table-column prop="name" label="姓名" width="180">
             </el-table-column>
             <el-table-column prop="BY" label="地址"> </el-table-column>
+          </el-table>
+          <el-table
+            v-show="demoAccount == 'Demo account'"
+            :data="tableData"
+            height="100%"
+            border
+            style="width: 100%"
+          >
+            <el-table-column prop="date" label="日期" width="180">
+            </el-table-column>
+            <el-table-column prop="name" label="姓名" width="180">
+            </el-table-column>
           </el-table>
         </div>
       </div>
@@ -362,6 +394,7 @@
 export default {
   data() {
     return {
+      demoAccount: "Live account",
       tableHeight: 100,
       sidebarSwitch: true,
       Activity: "",
@@ -372,6 +405,12 @@ export default {
         { isactive: false },
         { isactive: false },
       ],
+      // obj: {
+      //   call: { isactive: false },
+      //   activity: { isactive: false },
+      //   sms: { isactive: false },
+      //   Update: { isactive: false },
+      // },
       modify: false,
       tableData: [
         {
@@ -511,14 +550,7 @@ export default {
         },
       ],
       rules: {
-        Email1: [
-          {
-            type: "email",
-            message: "请输入正确的邮箱地址",
-            trigger: ["blur", "change"],
-          },
-        ],
-        Email2: [
+        Email: [
           {
             type: "email",
             message: "请输入正确的邮箱地址",
@@ -564,6 +596,10 @@ export default {
     };
   },
   methods: {
+    handleCommand(command) {
+      this.demoAccount = command;
+      // this.$message('click on item ' + command);
+    },
     sidebarOpen() {
       this.sidebarSwitch = !this.sidebarSwitch;
     },
@@ -609,6 +645,15 @@ export default {
 </script>
 <style lang="scss" >
 #Leads-details {
+  .el-dropdown {
+    padding-left: 20px;
+    font-size: 1.17em;
+    font-weight: bold;
+  }
+}
+</style>
+<style lang="scss" >
+#Leads-details {
   .el-input__inner {
     width: 100%;
   }
@@ -626,25 +671,12 @@ export default {
         // flex: 1;
         margin-bottom: 0;
         .el-form-item__label {
-          // padding-right: 0px;
+          width: 50px !important;
+          padding-right: 0px;
         }
         // width: 175px;
         .el-form-item__content {
-          width: 130px;
-          display: inline-block;
-          margin-left: 0 !important;
-          .el-form-item__error {
-            // width: 125px;
-          }
-        }
-      }
-      .el-form-item.Title {
-        .el-form-item__label {
-          width: 40px !important;
-          text-align: center;
-        }
-        .el-form-item__content {
-          width: 80px;
+          // width: 125px;
           display: inline-block;
           margin-left: 0 !important;
           .el-form-item__error {
@@ -690,7 +722,12 @@ export default {
         cursor: pointer;
         line-height: 30px;
         margin-right: 10px;
-        @include border($px: 1px, $color: #666, $shape: solid, $radius: 5px);
+        @include border(
+          $px: 1px,
+          $color: $borderColor,
+          $shape: solid,
+          $radius: 5px
+        );
       }
     }
     .activity-table {
