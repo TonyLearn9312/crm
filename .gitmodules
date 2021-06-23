@@ -1,3 +1,6 @@
 [submodule "sass-submodules"]
 	path = sass-submodules
 	url = https://github.com/373257720/sass-submodules.git
+[submodule "ddm-style"]
+	path = ddm-style
+	url = https://github.com/ddmarketinghub/ddm-style.git

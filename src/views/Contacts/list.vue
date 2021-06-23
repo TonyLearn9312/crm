@@ -1,8 +1,8 @@
 <template>
-  <div id="users">
+  <div id="contacts">
     <header>
       <div class="header-title">
-        <h3 class="users-tag">Leads</h3>
+        <h3 class="contacts-tag">Contacts</h3>
         <span class="el-icon-circle-plus"></span>
       </div>
       <!-- <div class="condition">
@@ -39,7 +39,7 @@
         <el-button>默认按钮</el-button>
       </div> -->
     </header>
-    <div class="users-table">
+    <div class="contacts-table">
       <el-table
         :data="
           tableData.slice((currentpage - 1) * pagesize, currentpage * pagesize)
@@ -228,7 +228,7 @@ export default {
   methods: {
     fromchildren(data) {
       this.currentpage = data.currentpage;
-    //   this.changepage(data.currentpage, data.pagesize);
+      //   this.changepage(data.currentpage, data.pagesize);
     },
     deleteRow(index, rows) {
       // console.log(rows);
@@ -272,9 +272,12 @@ export default {
     },
     handleEdit(index, row) {
       console.log(index, row);
-     this.$router.push({ path: '/Home/Leads/Leads1/details' });
-    //   this.form = { name: "", tasks: [], leads: [], contacts: [] };
-    //   this.dialogFormVisible = true;
+      this.$router.push({
+        path: '/Home/Contacts/Contacts1/details',
+        query: { id: index },
+      });
+      //   this.form = { name: "", tasks: [], leads: [], contacts: [] };
+      //   this.dialogFormVisible = true;
     },
     handleDelete(index, row) {
       console.log(index, row);
@@ -288,7 +291,7 @@ export default {
 }
 </style>
 <style lang="scss" >
-#users {
+#contacts {
   //   padding: 0 15px;
   position: absolute;
   left: $gap-width;
@@ -310,7 +313,7 @@ export default {
       align-items: center;
       margin-right: 20px;
     }
-    .users-tag {
+    .contacts-tag {
       margin-left: 30px;
       margin-right: 10px;
     }
@@ -323,7 +326,7 @@ export default {
 
     // @include border($px: 1px, $color: #000000, $shape: solid, $radius: 0);
   }
-  .users-table {
+  .contacts-table {
     //   @include border($px: 1px, $color: #2c3e50);
     // @include border($px: 1px, $color: #2c3e50);
   }

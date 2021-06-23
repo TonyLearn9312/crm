@@ -704,7 +704,7 @@ export default {
     transition: 0.5s;
     position: absolute;
     font-size: 12px;
-    @include border($px: 1px, $color: $borderColor);
+    @include border($px: 1px, $color: $BackgroundColor);
     @include boxModel(
       $width: $Sidebar-width,
       $height: calc(100% - #{$offset-bottom}),
@@ -724,7 +724,7 @@ export default {
         margin-right: 10px;
         @include border(
           $px: 1px,
-          $color: $borderColor,
+          $color: $BackgroundColor,
           $shape: solid,
           $radius: 5px
         );
@@ -755,7 +755,7 @@ export default {
     .Formdata {
       height: 40%;
       margin-bottom: $gap-width;
-      @include border($px: 1px, $color: $borderColor);
+      @include border($px: 1px, $color: $BackgroundColor);
       .el-form {
         display: grid;
         grid-template-columns: repeat(2, auto);
@@ -769,7 +769,7 @@ export default {
         height: 40px;
         width: 100%;
         justify-content: space-between;
-        border-bottom: 1px solid $borderColor;
+        border-bottom: 1px solid $BackgroundColor;
         h3 {
           padding-left: 20px;
         }
@@ -800,7 +800,7 @@ export default {
     .saleNote {
       margin-bottom: $gap-width;
       height: 30%;
-      @include border($px: 1px, $color: $borderColor);
+      @include border($px: 1px, $color: $BackgroundColor);
       .box {
         padding: 10px;
         height: calc(100% - 40px);
@@ -817,7 +817,7 @@ export default {
     }
     .demoAccount {
       height: calc(100% - 40% - 30% - #{$gap-width} * 2);
-      border: 1px solid $borderColor;
+      border: 1px solid $BackgroundColor;
       .box {
         height: calc(100% - 40px);
       }
@@ -853,7 +853,7 @@ export default {
         $margin: 0,
         $box-sizing: "border-box"
       );
-      border-bottom: 1px solid $borderColor;
+      border-bottom: 1px solid $BackgroundColor;
       h3 {
         padding-left: 20px;
       }

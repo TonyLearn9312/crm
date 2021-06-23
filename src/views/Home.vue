@@ -17,7 +17,7 @@
         <el-submenu :popper-append-to-body="false" index="Leads">
           <template slot="title">Leads</template>
           <el-menu-item
-            @click="routerto('/Home/Leads/Leads1/table')"
+            @click="routerto('/Home/Leads/Leads1/list')"
             index="Leads1"
             >Table</el-menu-item
           >
@@ -25,16 +25,16 @@
         <el-submenu :popper-append-to-body="false" index="Contacts">
           <template slot="title">Contacts</template>
           <el-menu-item
-            @click="routerto('/Home/Contacts/Contacts1/table')"
+            @click="routerto('/Home/Contacts/Contacts1/list')"
             index="Contacts1"
             >Table</el-menu-item
           >
         </el-submenu>
-        <el-submenu :popper-append-to-body="false" index="4">
+        <el-submenu :popper-append-to-body="false" index="Users">
           <template slot="title">Users</template>
-          <el-menu-item index="4-1">选项1</el-menu-item>
-          <el-menu-item index="4-2">选项2</el-menu-item>
-          <el-menu-item index="4-3">选项3</el-menu-item>
+          <el-menu-item index="Users1" @click="routerto('/Home/Users/Users1/list')">List</el-menu-item>
+          <!-- <el-menu-item index="4-2">选项2</el-menu-item>
+          <el-menu-item index="4-3">选项3</el-menu-item> -->
         </el-submenu>
         <el-submenu :popper-append-to-body="false" index="5">
           <template slot="title">Groups</template>
@@ -237,7 +237,7 @@ export default {
       width: $Sidebar-width;
       height: calc(100% - 30px);
       header {
-        border-bottom: 1px solid $borderColor;
+        border-bottom: 1px solid $BackgroundColor;
         @include boxModel(
           $width: 100%,
           $height: 40px,
@@ -251,7 +251,7 @@ export default {
       > div {
         // flex: 1;
         height: calc((100% - #{$gap-width}) / 2);
-        border: 1px solid $borderColor;
+        border: 1px solid $BackgroundColor;
       }
 
       div.box {
@@ -280,7 +280,7 @@ export default {
         $margin: 0,
         $box-sizing: "border-box"
       );
-      border-bottom: 1px solid $borderColor;
+      border-bottom: 1px solid $BackgroundColor;
       h3 {
         padding-left: 20px;
       }
@@ -289,7 +289,7 @@ export default {
     > div {
       // flex: 1;
       height: calc((100% - #{$gap-width}) / 2);
-      border: 1px solid $borderColor;
+      border: 1px solid $BackgroundColor;
     }
 
     div.box {

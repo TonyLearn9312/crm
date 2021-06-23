@@ -1,5 +1,5 @@
 <template>
-  <div id="Leads-details">
+  <div class="Leads-details">
     <div
       class="activity"
       :class="{
@@ -282,7 +282,7 @@
         </header>
         <div class="box">
           <el-form
-            :model="ruleForm"
+            :model="SaleNoteForm"
             :rules="rules"
             label-position="left"
             :inline="true"
@@ -290,53 +290,80 @@
             label-width="100px"
             class="demo-ruleForm"
           >
-            <el-form-item label="Interest" prop="name">
-              <el-input v-model="ruleForm.FirstName"></el-input>
-            </el-form-item>
-            <el-form-item label="Call back" prop="name">
-              <el-input v-model="ruleForm.LastName"></el-input>
-            </el-form-item>
-            <el-form-item label="Status" prop="Email">
-              <el-input v-model="ruleForm.name"></el-input>
-            </el-form-item>
-            <el-form-item label="Note" prop="Email">
-              <el-input v-model="ruleForm.name"></el-input>
-            </el-form-item>
-            <el-form-item label="Trading Level" prop="name">
-              <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
+            <el-form-item class="item-1" label="Interest">
+              <el-select
+                v-model="SaleNoteForm.Interest"
+                placeholder="请选择活动区域"
+              >
                 <el-option label="区域一" value="shanghai"></el-option>
                 <el-option label="区域二" value="beijing"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="Favo" prop="region">
-              <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
+            <el-form-item class="item-2" label="Trading Level">
+              <el-select
+                v-model="SaleNoteForm.tradingLevel"
+                placeholder="请选择活动区域"
+              >
                 <el-option label="区域一" value="shanghai"></el-option>
                 <el-option label="区域二" value="beijing"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="Regulation" prop="delivery">
-              <el-input v-model="ruleForm.Regulation"></el-input>
+            <el-form-item class="item-3" label="Call back">
+              <el-date-picker
+                type="date"
+                placeholder="选择日期"
+                v-model="SaleNoteForm.callback"
+              ></el-date-picker>
             </el-form-item>
-            <el-form-item label="LeadSource" prop="resource">
-              <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
+            <el-form-item class="item-4" label="Favo">
+              <el-select
+                v-model="SaleNoteForm.favo"
+                placeholder="请选择活动区域"
+              >
                 <el-option label="区域一" value="shanghai"></el-option>
                 <el-option label="区域二" value="beijing"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="Lead status" prop="type">
-              <el-select v-model="ruleForm.region" placeholder="请选择活动区域">
+            <el-form-item class="item-5" label="Status">
+              <el-select
+                v-model="SaleNoteForm.status"
+                placeholder="请选择活动区域"
+              >
                 <el-option label="区域一" value="shanghai"></el-option>
                 <el-option label="区域二" value="beijing"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="Timeassigned" prop="type">
-              <div style="width: 200px">{{ ruleForm.name }}</div>
+            <el-form-item class="item-6" label="bestContactTime">
+              <el-date-picker
+                type="date"
+                placeholder="选择日期"
+                v-model="SaleNoteForm.bestContactTime"
+              ></el-date-picker>
             </el-form-item>
-            <el-form-item label="Timer" prop="type">
-              <div style="width: 200px">sdfdsf</div>
+            <el-form-item class="item-7" label="Note">
+              <el-input
+                type="textarea"
+                :rows="5"
+                placeholder="请输入"
+                v-model="SaleNoteForm.note"
+              ></el-input>
             </el-form-item>
-            <el-form-item label="Inquiry" prop="type">
-              <el-input v-model="ruleForm.name"></el-input>
+
+            <el-form-item class="item-8" label="expectedDeposit">
+              <el-input v-model="SaleNoteForm.expectedDeposit"></el-input>
+            </el-form-item>
+            <el-form-item class="item-9" label="lastModified">
+              <div>{{ SaleNoteForm.lastModified }}</div>
+            </el-form-item>
+            <el-form-item class="item-10" label="checkbox">
+              <el-checkbox-group v-model="SaleNoteForm.checkbox">
+                <el-checkbox label="MT4"></el-checkbox>
+                <el-checkbox label="MT5"></el-checkbox>
+                <el-checkbox label="Iress"></el-checkbox>
+                <el-checkbox label="EA"></el-checkbox>
+                <el-checkbox label="No MKT email"></el-checkbox>
+                <el-checkbox label="No sale call"></el-checkbox>
+              </el-checkbox-group>
             </el-form-item>
           </el-form>
         </div>
@@ -347,11 +374,14 @@
         </header>
         <div class="box">
           <el-table :data="tableData" height="100%" border style="width: 100%">
-            <el-table-column prop="date" label="日期" width="180">
-            </el-table-column>
-            <el-table-column prop="name" label="姓名" width="180">
-            </el-table-column>
-            <el-table-column prop="BY" label="地址"> </el-table-column>
+            <el-table-column prop="date" label="NO."> </el-table-column>
+            <el-table-column prop="name" label="Server"> </el-table-column>
+            <el-table-column prop="BY" label="Type"> </el-table-column>
+            <el-table-column prop="BY" label="Status"> </el-table-column>
+            <el-table-column prop="BY" label="Currency"> </el-table-column>
+            <el-table-column prop="BY" label="Equity"> </el-table-column>
+            <el-table-column prop="BY" label="NET"> </el-table-column>
+            <el-table-column prop="BY" label="Last login"> </el-table-column>
           </el-table>
         </div>
       </div>
@@ -362,7 +392,6 @@
 export default {
   data() {
     return {
-      tableHeight: 100,
       sidebarSwitch: true,
       Activity: "",
       obj: [
@@ -372,7 +401,18 @@ export default {
         { isactive: false },
         { isactive: false },
       ],
-      modify: false,
+      SaleNoteForm: {
+        interest: "",
+        callback: "",
+        status: "",
+        note: "",
+        tradingLevel: "",
+        favo: "",
+        bestContactTime: "",
+        expectedDeposit: "",
+        lastModified: "",
+        checkbox: [],
+      },
       tableData: [
         {
           date: "2016-05-03",
@@ -608,7 +648,7 @@ export default {
 };
 </script>
 <style lang="scss" >
-#Leads-details {
+.Leads-details {
   .el-input__inner {
     width: 100%;
   }
@@ -667,20 +707,24 @@ export default {
       line-height: 30px;
     }
   }
+}
+</style>
+<style lang="scss" scoped>
+.Leads-details {
+  $toolbar-height: 50px;
   .activity {
     -webkit-transition: -webkit-transform 0.5s;
     transition: 0.5s;
     position: absolute;
     font-size: 12px;
-    @include border($px: 1px, $color: $borderColor);
+    @include border($px: 1px, $color: $BackgroundColor);
     @include boxModel(
       $width: $Sidebar-width,
       $height: calc(100% - #{$offset-bottom}),
       $padding: 0
     );
-
     .toolbar {
-      height: 50px;
+      height: $toolbar-height;
       display: flex;
       flex-wrap: wrap;
       padding: 10px 20px;
@@ -690,15 +734,20 @@ export default {
         cursor: pointer;
         line-height: 30px;
         margin-right: 10px;
-        @include border($px: 1px, $color: #666, $shape: solid, $radius: 5px);
+        @include border(
+          $px: 1px,
+          $color: $BackgroundColor,
+          $shape: solid,
+          $radius: 5px
+        );
       }
     }
     .activity-table {
-      height: calc(100% - 90px);
+      height: calc(100% - #{$header-hight} - #{$toolbar-height});
     }
     .isactive {
-      color: #fff;
-      background: #666;
+      color: $whiteBgColor;
+      background: $BackgroundColor;
     }
   }
   .activity.sidebar-close {
@@ -718,21 +767,18 @@ export default {
     .Formdata {
       height: 40%;
       margin-bottom: $gap-width;
-      @include border($px: 1px, $color: $borderColor);
+      @include border($px: 1px, $color: $BackgroundColor);
       .el-form {
         display: grid;
         grid-template-columns: repeat(2, auto);
       }
-      .el-select {
-        width: 100%;
-      }
       header {
         display: flex;
         align-items: center;
-        height: 40px;
+        height: $header-hight;
         width: 100%;
         justify-content: space-between;
-        border-bottom: 1px solid $borderColor;
+        border-bottom: 1px solid $BackgroundColor;
         h3 {
           padding-left: 20px;
         }
@@ -755,7 +801,7 @@ export default {
       }
       .box {
         padding: 10px;
-        height: calc(100% - 40px);
+        height: calc(100% - #{$header-hight});
         overflow-y: auto;
         overflow-x: hidden;
       }
@@ -763,26 +809,35 @@ export default {
     .saleNote {
       margin-bottom: $gap-width;
       height: 30%;
-      @include border($px: 1px, $color: $borderColor);
+      @include border($px: 1px, $color: $BackgroundColor);
       .box {
         padding: 10px;
-        height: calc(100% - 40px);
+        height: calc(100% - #{$header-hight});
         overflow-y: auto;
         overflow-x: hidden;
       }
       .el-form {
-        // display: flex;
-        // flex-wrap: wrap;
         display: grid;
         grid-template-columns: repeat(2, auto);
-        // grid-template-rows: repeat(3, 33.33%);
+        // grid-template-areas:
+        //   "a b"
+        //   "c d"
+        //   "e f"
+        //   "g h"
+        //   "g j"
+        //   "g l";
+        .item-7 {
+          grid-row-start:4;
+          grid-row-end: 8;
+        }
+        // grid-auto-flow: row;
       }
     }
     .demoAccount {
       height: calc(100% - 40% - 30% - #{$gap-width} * 2);
-      border: 1px solid $borderColor;
+      @include border($px: 1px, $color: $BackgroundColor);
       .box {
-        height: calc(100% - 40px);
+        height: calc(100% - #{$header-hight});
       }
     }
   }
@@ -791,7 +846,6 @@ export default {
     left: $gap-width * 2 + $Sidebar-width;
     .Formdata .el-form {
       grid-template-columns: repeat(2, auto);
-      // justify-items: center;
     }
   }
   .mid-component.sidebar-close {
@@ -801,7 +855,6 @@ export default {
       grid-template-columns: repeat(4, auto);
     }
   }
-
   .activity,
   .mid-component .saleNote,
   .mid-component .demoAccount {
@@ -810,13 +863,10 @@ export default {
       align-items: center;
       @include boxModel(
         $width: 100%,
-        $height: 40px,
-        $background-color: #fff,
-        $padding: 0,
-        $margin: 0,
-        $box-sizing: "border-box"
+        $height: $header-hight,
+        $background-color: $whiteBgColor
       );
-      border-bottom: 1px solid $borderColor;
+      border-bottom: 1px solid $BackgroundColor;
       h3 {
         padding-left: 20px;
       }

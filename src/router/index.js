@@ -36,7 +36,7 @@ const routes = [
             path: 'Leads1',
             name: 'Leads1',
             component: () => import(/* webpackChunkName: "about" */ '../views/Leads/table_root.vue'),
-            redirect: "/Home/Leads/Leads1/table",
+            redirect: "/Home/Leads/Leads1/list",
             children: [
               {
                 path: 'details',
@@ -44,9 +44,9 @@ const routes = [
                 component: () => import(/* webpackChunkName: "about" */ '../views/Leads/details.vue')
               },
               {
-                path: 'table',
-                name: 'table',
-                component: () => import(/* webpackChunkName: "about" */ '../views/Leads/table.vue')
+                path: 'list',
+                name: 'list',
+                component: () => import(/* webpackChunkName: "about" */ '../views/Leads/list.vue')
               }
             ],
           },
@@ -62,12 +62,12 @@ const routes = [
             path: 'Contacts1',
             name: 'Contacts1',
             component: () => import(/* webpackChunkName: "about" */ '../views/Contacts/table_root.vue'),
-            redirect: "/Home/Contacts/Contacts1/table",
+            redirect: "/Home/Contacts/Contacts1/list",
             children: [
               {
-                path: 'table',
-                name: 'table',
-                component: () => import(/* webpackChunkName: "about" */ '../views/Contacts/table.vue')
+                path: 'list',
+                name: 'list',
+                component: () => import(/* webpackChunkName: "about" */ '../views/Contacts/list.vue')
               },
               {
                 path: 'details',
@@ -81,7 +81,28 @@ const routes = [
       {
         path: 'Users',
         name: 'Users',
-        component: () => import(/* webpackChunkName: "about" */ '../views/users/users.vue')
+        component: () => import(/* webpackChunkName: "about" */ '../views/users/users.vue'),
+        redirect: "/Home/Users/Users1",
+        children: [
+          {
+            path: 'Users1',
+            name: 'Users1',
+            component: () => import(/* webpackChunkName: "about" */ '../views/users/table_root.vue'),
+            redirect: "/Home/Users/Users1/list",
+            children: [
+              {
+                path: 'list',
+                name: 'list',
+                component: () => import(/* webpackChunkName: "about" */ '../views/users/list.vue')
+              },
+              {
+                path: 'details',
+                name: 'details',
+                component: () => import(/* webpackChunkName: "about" */ '../views/users/details.vue')
+              },
+            ],
+          },
+        ],
       },
     ]
   },
