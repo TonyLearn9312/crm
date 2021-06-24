@@ -119,15 +119,33 @@
             ref="ruleForm"
             class="demo-ruleForm"
           >
-            <el-form-item label="First name">
+            <el-form-item class="item-1" label="First name">
               <el-input v-model="ruleForm.FirstName"></el-input>
             </el-form-item>
-            <el-form-item label="Last name">
+            <el-form-item class="item-2" label="Lead owner">
+              <el-select
+                :popper-append-to-body="false"
+                v-model="ruleForm.LeadOwner"
+                placeholder="请选择"
+              >
+                <el-option label="区域一" value="shanghai"></el-option>
+                <el-option label="区域二" value="beijing"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item class="item-3" label="Last name">
               <el-input v-model="ruleForm.LastName"></el-input>
             </el-form-item>
-            <el-form-item class="DOB-title">
-              <!-- <el-col :span="6">DOB</el-col> -->
-              <!-- <el-col :span="8"> -->
+            <el-form-item class="item-4" label="Sale team">
+              <el-select
+                :popper-append-to-body="false"
+                v-model="ruleForm.Saleteam"
+                placeholder="请选择活动区域"
+              >
+                <el-option label="区域一" value="shanghai"></el-option>
+                <el-option label="区域二" value="beijing"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item class="DOB-title item-5">
               <el-form-item label="DOB">
                 <el-date-picker
                   type="date"
@@ -135,9 +153,6 @@
                   v-model="ruleForm.Dob"
                 ></el-date-picker>
               </el-form-item>
-              <!-- </el-col> -->
-              <!-- <el-col :span="2">Title</el-col>
-              <el-col :span="8"> -->
               <el-form-item class="Title" label="Title">
                 <el-select
                   :popper-append-to-body="false"
@@ -148,78 +163,8 @@
                   <el-option label="Miss" value="beijing"></el-option>
                 </el-select>
               </el-form-item>
-              <!-- </el-col> -->
             </el-form-item>
-            <el-form-item label="Lead owner">
-              <el-select
-                :popper-append-to-body="false"
-                v-model="ruleForm.LeadOwner"
-                placeholder="请选择"
-              >
-                <el-option label="区域一" value="shanghai"></el-option>
-                <el-option label="区域二" value="beijing"></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item class="Email" label="Email">
-              <el-form-item prop="Email1">
-                <el-input v-model="ruleForm.Email1"></el-input>
-              </el-form-item>
-              <el-form-item prop="Email2">
-                <el-input v-model="ruleForm.Email2"></el-input>
-              </el-form-item>
-            </el-form-item>
-            <el-form-item class="Mobile" label="Mobile">
-              <el-form-item prop="type">
-                <el-input v-model="ruleForm.name"></el-input>
-              </el-form-item>
-              <el-form-item prop="type">
-                <el-input v-model="ruleForm.name"></el-input>
-              </el-form-item>
-            </el-form-item>
-            <el-form-item label="languange">
-              <el-select
-                :popper-append-to-body="false"
-                v-model="ruleForm.languange"
-                placeholder="请选择"
-              >
-                <el-option label="区域一" value="shanghai"></el-option>
-                <el-option label="区域二" value="beijing"></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="Country">
-              <el-select
-                :popper-append-to-body="false"
-                v-model="ruleForm.Country"
-                placeholder="请选择"
-              >
-                <el-option label="区域一" value="shanghai"></el-option>
-                <el-option label="区域二" value="beijing"></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="BY" prop="type">
-              <el-input v-model="ruleForm.name"></el-input>
-            </el-form-item>
-            <el-form-item label="Local time" prop="type">
-              <el-date-picker
-                type="date"
-                placeholder="选择日期"
-                v-model="ruleForm.LocalTime"
-              ></el-date-picker>
-            </el-form-item>
-            <el-form-item label="Sale team">
-              <el-select
-                :popper-append-to-body="false"
-                v-model="ruleForm.Saleteam"
-                placeholder="请选择活动区域"
-              >
-                <el-option label="区域一" value="shanghai"></el-option>
-                <el-option label="区域二" value="beijing"></el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="Regulation" prop="delivery">
-              <el-input v-model="ruleForm.Regulation"></el-input>
-            </el-form-item>
-            <el-form-item label="LeadSource">
+            <el-form-item class="item-6" label="LeadSource">
               <el-select
                 :popper-append-to-body="false"
                 v-model="ruleForm.LeadSource"
@@ -229,7 +174,67 @@
                 <el-option label="区域二" value="beijing"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="Lead status" prop="type">
+            <el-form-item
+              class="item-7 email-regulation"
+              prop="Email1"
+              label="Email"
+            >
+              <el-input placeholder="请输入" v-model="ruleForm.Email1">
+                <el-select
+                  v-model="ruleForm.Regulation"
+                  slot="append"
+                  placeholder="Regulation"
+                >
+                  <el-option label="XX银监会" value="1"></el-option>
+                  <el-option label="XX银监会" value="2"></el-option>
+                  <el-option label="XX银监会" value="3"></el-option>
+                </el-select>
+              </el-input>
+            </el-form-item>
+            <el-form-item class="item-8 email-regulation" label="Email">
+              <el-input placeholder="请输入" v-model="ruleForm.Email2">
+                <el-select
+                  v-model="ruleForm.Regulation"
+                  slot="append"
+                  placeholder="Regulation"
+                >
+                  <el-option label="XX银监会" value="1"></el-option>
+                  <el-option label="XX银监会" value="2"></el-option>
+                  <el-option label="XX银监会" value="3"></el-option>
+                </el-select>
+              </el-input>
+            </el-form-item>
+            <el-form-item class="Mobile item-9" label="Mobile">
+              <el-form-item prop="type">
+                <el-input v-model="ruleForm.name">
+                  <el-select
+                    v-model="ruleForm.Regulation"
+                    slot="prepend"
+                    placeholder="Regulation"
+                  >
+                    <el-option label="+26" value="1"></el-option>
+                    <el-option label="+86" value="2"></el-option>
+                    <el-option label="+09" value="3"></el-option>
+                  </el-select>
+                </el-input>
+              </el-form-item>
+              <el-form-item prop="type">
+                <el-input v-model="ruleForm.name">
+                  <el-input v-model="ruleForm.name">
+                    <el-select
+                      v-model="ruleForm.Regulation"
+                      slot="prepend"
+                      placeholder="Regulation"
+                    >
+                      <el-option label="XX银监会" value="1"></el-option>
+                      <el-option label="XX银监会" value="2"></el-option>
+                      <el-option label="XX银监会" value="3"></el-option>
+                    </el-select>
+                  </el-input>
+                </el-input>
+              </el-form-item>
+            </el-form-item>
+            <el-form-item class="item-10" label="Lead status" prop="type">
               <el-select
                 :popper-append-to-body="false"
                 v-model="ruleForm.LeadStatus"
@@ -239,21 +244,53 @@
                 <el-option label="区域二" value="beijing"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="Timeassigned" prop="type">
+            <el-form-item class="item-11" label="Timeassigned" prop="type">
               <div style="width: 200px">sdfdsf</div>
             </el-form-item>
-            <el-form-item label="Timer" prop="type">
+            <el-form-item class="lan-country item-12">
+              <el-form-item label="Language">
+                <el-select
+                  :popper-append-to-body="false"
+                  v-model="ruleForm.title"
+                  placeholder="请选择"
+                >
+                  <el-option label="Mr" value="shanghai"></el-option>
+                  <el-option label="Miss" value="beijing"></el-option>
+                </el-select>
+              </el-form-item>
+              <el-form-item class="Title" label="Country">
+                <el-select
+                  :popper-append-to-body="false"
+                  v-model="ruleForm.title"
+                  placeholder="请选择"
+                >
+                  <el-option label="Mr" value="shanghai"></el-option>
+                  <el-option label="Miss" value="beijing"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-form-item>
+            <el-form-item class="item-13" label="Timer" prop="type">
               <div style="width: 200px">sdfdsf</div>
             </el-form-item>
-            <el-form-item label="Inquiry" prop="type">
+            <el-form-item class="item-14" label="Address" prop="type">
+              <el-input v-model="ruleForm.name"></el-input>
+            </el-form-item>
+            <el-form-item class="item-15" label="Inquiry" prop="type">
               <el-input
                 type="textarea"
-                :rows="5"
+                :rows="7"
                 placeholder="请输入"
                 v-model="ruleForm.Inquiry"
               ></el-input>
             </el-form-item>
-            <el-form-item label="Attachment" prop="type">
+            <el-form-item class="item-16" label="Local time" prop="type">
+              <el-date-picker
+                type="date"
+                placeholder="选择日期"
+                v-model="ruleForm.LocalTime"
+              ></el-date-picker>
+            </el-form-item>
+            <el-form-item class="item-17" label="Attachment" prop="type">
               <el-upload
                 class="upload-demo"
                 action="https://jsonplaceholder.typicode.com/posts/"
@@ -347,15 +384,21 @@
                 placeholder="请输入"
                 v-model="SaleNoteForm.note"
               ></el-input>
+              <el-button>save</el-button>
             </el-form-item>
-
             <el-form-item class="item-8" label="expectedDeposit">
-              <el-input v-model="SaleNoteForm.expectedDeposit"></el-input>
+              <el-select
+                v-model="SaleNoteForm.status"
+                placeholder="请选择活动区域"
+              >
+                <el-option label="区域一" value="shanghai"></el-option>
+                <el-option label="区域二" value="beijing"></el-option>
+              </el-select>
             </el-form-item>
             <el-form-item class="item-9" label="lastModified">
               <div>{{ SaleNoteForm.lastModified }}</div>
             </el-form-item>
-            <el-form-item class="item-10" label="checkbox">
+            <el-form-item class="item-10" label="">
               <el-checkbox-group v-model="SaleNoteForm.checkbox">
                 <el-checkbox label="MT4"></el-checkbox>
                 <el-checkbox label="MT5"></el-checkbox>
@@ -410,7 +453,7 @@ export default {
         favo: "",
         bestContactTime: "",
         expectedDeposit: "",
-        lastModified: "",
+        lastModified: "24/06/2021",
         checkbox: [],
       },
       tableData: [
@@ -604,6 +647,10 @@ export default {
     };
   },
   methods: {
+    handleCommand(command) {
+      // this.$message("click on item " + command);
+      this.ruleForm.Regulation = command;
+    },
     sidebarOpen() {
       this.sidebarSwitch = !this.sidebarSwitch;
     },
@@ -652,29 +699,23 @@ export default {
   .el-input__inner {
     width: 100%;
   }
-  .el-button {
-    padding: 5px 10px;
-  }
   .DOB-title {
-    width: 350px;
+    width: 370px;
     .el-form-item__content:nth-of-type(1) {
       width: 100%;
       margin-left: 0 !important;
       display: flex;
       justify-content: space-between;
       .el-form-item {
-        // flex: 1;
         margin-bottom: 0;
         .el-form-item__label {
-          // padding-right: 0px;
         }
-        // width: 175px;
         .el-form-item__content {
           width: 130px;
           display: inline-block;
           margin-left: 0 !important;
+          line-height: 12px;
           .el-form-item__error {
-            // width: 125px;
           }
         }
       }
@@ -684,27 +725,78 @@ export default {
           text-align: center;
         }
         .el-form-item__content {
-          width: 80px;
+          width: 100px;
           display: inline-block;
           margin-left: 0 !important;
+          line-height: initial;
           .el-form-item__error {
             // width: 125px;
+            // line-height: initial;
           }
         }
       }
-      .el-form-item:first-child {
-        //    margin-right: 10px;
-      }
       .el-date-editor.el-input,
       .el-date-editor.el-input__inner {
-        // width: 125px;
         width: 100%;
       }
     }
-    .el-input__inner {
-      // width: 125px;
-      height: 30px;
-      line-height: 30px;
+  }
+  .lan-country {
+    width: 370px;
+    .el-form-item__content:nth-of-type(1) {
+      width: 100%;
+      margin-left: 0 !important;
+      display: flex;
+      justify-content: space-between;
+      .el-form-item {
+        margin-bottom: 0;
+        .el-form-item__label {
+        }
+        .el-form-item__content {
+          width: 90px;
+          display: inline-block;
+          margin-left: 0 !important;
+          line-height: 12px;
+          .el-form-item__error {
+          }
+        }
+      }
+      .el-form-item.Title {
+        .el-form-item__label {
+          width: 80px !important;
+          text-align: center;
+        }
+        .el-form-item__content {
+          width: 100px;
+          display: inline-block;
+          margin-left: 0 !important;
+          line-height: initial;
+          .el-form-item__error {
+            // width: 125px;
+            // line-height: initial;
+          }
+        }
+      }
+      .el-date-editor.el-input,
+      .el-date-editor.el-input__inner {
+        width: 100%;
+      }
+    }
+  }
+  .Mobile{
+       .el-select .el-input {
+      width: 70px;
+    }
+    .input-with-select .el-input-group__prepend {
+      background-color: #fff;
+    }
+  }
+  .email-regulation {
+    .el-select .el-input {
+      width: 110px;
+    }
+    .input-with-select .el-input-group__prepend {
+      background-color: #fff;
     }
   }
 }
@@ -743,6 +835,7 @@ export default {
       }
     }
     .activity-table {
+      // box-sizing: border-box;
       height: calc(100% - #{$header-hight} - #{$toolbar-height});
     }
     .isactive {
@@ -756,7 +849,6 @@ export default {
   .activity.sidebar-open {
     left: $gap-width;
   }
-
   .mid-component {
     -webkit-transition: -webkit-transform 0.5s;
     transition: 0.5s;
@@ -770,7 +862,7 @@ export default {
       @include border($px: 1px, $color: $BackgroundColor);
       .el-form {
         display: grid;
-        grid-template-columns: repeat(2, auto);
+        // grid-template-columns: repeat(2, auto);
       }
       header {
         display: flex;
@@ -827,8 +919,8 @@ export default {
         //   "g j"
         //   "g l";
         .item-7 {
-          grid-row-start:4;
-          grid-row-end: 8;
+          grid-row-start: 4;
+          grid-row-end: 7;
         }
         // grid-auto-flow: row;
       }
@@ -846,6 +938,15 @@ export default {
     left: $gap-width * 2 + $Sidebar-width;
     .Formdata .el-form {
       grid-template-columns: repeat(2, auto);
+      .item-9 {
+        grid-row-start: 5;
+        grid-row-end: 7;
+      }
+      .item-15 {
+        grid-row-start: 8;
+        grid-column-start: 2;
+        grid-row-end: 12;
+      }
     }
   }
   .mid-component.sidebar-close {
@@ -853,6 +954,106 @@ export default {
     left: $gap-width;
     .Formdata .el-form {
       grid-template-columns: repeat(4, auto);
+      .item-2 {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+      }
+      .item-3 {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+      }
+      .item-5 {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 3;
+        grid-row-end: 4;
+      }
+      .item-7 {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 4;
+        grid-row-end: 5;
+      }
+      .item-8 {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 5;
+        grid-row-end: 6;
+      }
+
+      .item-9 {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 6;
+        grid-row-end: 8;
+      }
+      .item-11 {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 6;
+        // grid-column-start: 4;
+      }
+      .item-12 {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 2;
+        grid-column-end: 3;
+        // grid-column-start: 4;
+      }
+      .item-13 {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        // grid-column-start: 4;
+      }
+      .item-4 {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        // grid-column-start: 4;
+      }
+      .item-6 {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        // grid-column-start: 4;
+      }
+      .item-10 {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 4;
+        // grid-column-start: 4;
+      }
+      .item-16 {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 5;
+        // grid-column-start: 4;
+      }
+      .item-14 {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 1;
+        grid-row-end: 2;
+      }
+      .item-15 {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 3;
+        // grid-column-start: 2;
+        grid-row-end: 9;
+      }
+      .item-17 {
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 1;
+        grid-row-end: 9;
+      }
     }
   }
   .activity,

@@ -229,6 +229,7 @@ export default {
     position: relative;
     width: 100%;
     height: calc(100% - #{$Topheight} - #{$gap-width});
+    // background: #000;
     overflow-y: auto;
     .right-sidebar {
       position: absolute;

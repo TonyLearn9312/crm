@@ -282,10 +282,10 @@
       height: 12px; }
     .el-timeline-item__node--large {
       left: -2px;
-      width: 14px;
-      height: 14px; }
+      width: 12px;
+      height: 12px; }
     .el-timeline-item__node--primary {
-      background-color: #2C393E; }
+      background-color: #0ba347; }
     .el-timeline-item__node--success {
       background-color: #67C23A; }
     .el-timeline-item__node--warning {

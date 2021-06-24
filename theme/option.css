@@ -249,7 +249,7 @@
 /* Break-point
 --------------------------*/
 .el-select-dropdown__item {
-  font-size: 14px;
+  font-size: 12px;
   padding: 0 20px;
   position: relative;
   white-space: nowrap;
@@ -267,7 +267,7 @@
     .el-select-dropdown__item.is-disabled:hover {
       background-color: #FFFFFF; }
   .el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
-    background-color: #F5F7FA; }
+    background-color: #F2F6FC; }
   .el-select-dropdown__item.selected {
-    color: #2C393E;
+    color: #0ba347;
     font-weight: bold; }

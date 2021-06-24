@@ -265,9 +265,6 @@ export default {
   font-size: 12px;
 }
 
-.el-checkbox__label {
-  font-size: 12px;
-}
 </style>
 <style lang="scss" >
 #users {

@@ -16,7 +16,7 @@ $--color-transition-base: color .2s cubic-bezier(.645,.045,.355,1) !default;
 /* Color
 -------------------------- */
 /// color|1|Brand Color|0
-$--color-primary: #2C393E !default;
+$--color-primary: #0ba347 !default;
 /// color|1|Background Color|4
 $--color-white: #FFFFFF !default;
 /// color|1|Background Color|4
@@ -67,7 +67,7 @@ $--border-color-extra-light: #F2F6FC !default;
 
 // Background
 /// color|1|Background Color|4
-$--background-color-base: #F5F7FA !default;
+$--background-color-base: #F2F6FC !default;
 
 /* Link
 -------------------------- */
@@ -112,7 +112,7 @@ $--font-size-large: 18px !default;
 /// fontSize|1|Font Size|0
 $--font-size-medium: 16px !default;
 /// fontSize|1|Font Size|0
-$--font-size-base: 14px !default;
+$--font-size-base: 12px !default;
 /// fontSize|1|Font Size|0
 $--font-size-small: 13px !default;
 /// fontSize|1|Font Size|0
@@ -128,7 +128,7 @@ $--font-line-height-secondary: 16px !default;
 $--font-color-disabled-base: #bbb !default;
 /* Size
 -------------------------- */
-$--size-base: 14px !default;
+$--size-base: 12px !default;
 
 /* z-index
 -------------------------- */
@@ -150,13 +150,13 @@ $--icon-color-base: $--color-info !default;
 /* Checkbox
 -------------------------- */
 /// fontSize||Font|1
-$--checkbox-font-size: 14px !default;
+$--checkbox-font-size: 12px !default;
 /// fontWeight||Font|1
 $--checkbox-font-weight: $--font-weight-primary !default;
 /// color||Color|0
 $--checkbox-font-color: $--color-text-regular !default;
-$--checkbox-input-height: 14px !default;
-$--checkbox-input-width: 14px !default;
+$--checkbox-input-height: 12px !default;
+$--checkbox-input-width: 12px !default;
 /// borderRadius||Border|2
 $--checkbox-border-radius: $--border-radius-small !default;
 /// color||Color|0
@@ -190,8 +190,8 @@ $--checkbox-bordered-medium-padding: 7px 20px 7px 10px !default;
 $--checkbox-bordered-small-padding: 5px 15px 5px 10px !default;
 /// padding||Spacing|3
 $--checkbox-bordered-mini-padding: 3px 15px 3px 10px !default;
-$--checkbox-bordered-medium-input-height: 14px !default;
-$--checkbox-bordered-medium-input-width: 14px !default;
+$--checkbox-bordered-medium-input-height: 12px !default;
+$--checkbox-bordered-medium-input-width: 12px !default;
 /// height||Other|4
 $--checkbox-bordered-medium-height: 36px !default;
 $--checkbox-bordered-small-input-height: 12px !default;
@@ -220,8 +220,8 @@ $--radio-font-size: $--font-size-base !default;
 $--radio-font-weight: $--font-weight-primary !default;
 /// color||Color|0
 $--radio-font-color: $--color-text-regular !default;
-$--radio-input-height: 14px !default;
-$--radio-input-width: 14px !default;
+$--radio-input-height: 12px !default;
+$--radio-input-width: 12px !default;
 /// borderRadius||Border|2
 $--radio-input-border-radius: $--border-radius-circle !default;
 /// color||Color|0
@@ -256,8 +256,8 @@ $--radio-bordered-padding: 12px 20px 0 10px !default;
 $--radio-bordered-medium-padding: 10px 20px 0 10px !default;
 $--radio-bordered-small-padding: 8px 15px 0 10px !default;
 $--radio-bordered-mini-padding: 6px 15px 0 10px !default;
-$--radio-bordered-medium-input-height: 14px !default;
-$--radio-bordered-medium-input-width: 14px !default;
+$--radio-bordered-medium-input-height: 12px !default;
+$--radio-bordered-medium-input-width: 12px !default;
 $--radio-bordered-medium-height: 36px !default;
 $--radio-bordered-small-input-height: 12px !default;
 $--radio-bordered-small-input-width: 12px !default;
@@ -289,7 +289,7 @@ $--select-multiple-input-color: #666 !default;
 /// color||Color|0
 $--select-input-focus-border-color: $--color-primary !default;
 /// fontSize||Font|1
-$--select-input-font-size: 14px !default;
+$--select-input-font-size: 12px !default;
 
 $--select-option-color: $--color-text-regular !default;
 $--select-option-disabled-color: $--color-text-placeholder !default;
@@ -388,7 +388,7 @@ $--message-danger-font-color: $--color-danger !default;
 -------------------------- */
 $--notification-width: 330px !default;
 /// padding||Spacing|3
-$--notification-padding: 14px 26px 14px 13px !default;
+$--notification-padding: 12px 26px 12px 13px !default;
 $--notification-radius: 8px !default;
 $--notification-shadow: $--box-shadow-light !default;
 /// color||Color|0
@@ -442,7 +442,7 @@ $--input-color-disabled: $--font-color-disabled-base !default;
 $--input-icon-color: $--color-text-placeholder !default;
 /// color||Color|0
 $--input-placeholder-color: $--color-text-placeholder !default;
-$--input-max-width: 314px !default;
+$--input-max-width: 312px !default;
 
 $--input-hover-border: $--border-color-hover !default;
 $--input-clear-hover-color: $--color-text-secondary !default;
@@ -456,7 +456,7 @@ $--input-disabled-color: $--disabled-color-base !default;
 $--input-disabled-placeholder-color: $--color-text-placeholder !default;
 
 /// fontSize||Font|1
-$--input-medium-font-size: 14px !default;
+$--input-medium-font-size: 12px !default;
 /// height||Other|4
 $--input-medium-height: 36px !default;
 /// fontSize||Font|1
@@ -619,7 +619,7 @@ $--dialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
 /// fontSize||Font|1
 $--dialog-title-font-size: $--font-size-large !default;
 /// fontSize||Font|1
-$--dialog-content-font-size: 14px !default;
+$--dialog-content-font-size: 12px !default;
 /// fontLineHeight||LineHeight|2
 $--dialog-font-line-height: $--font-line-height-primary !default;
 /// padding||Spacing|3
@@ -898,7 +898,7 @@ $--main-padding: 20px !default;
 /* Timeline
 --------------------------*/
 $--timeline-node-size-normal: 12px !default;
-$--timeline-node-size-large: 14px !default;
+$--timeline-node-size-large: 12px !default;
 $--timeline-node-color: $--border-color-light !default;
 
 /* Backtop
@@ -952,7 +952,7 @@ $--avatar-font-color: #fff !default;
 /// color||Color|0
 $--avatar-background-color: #C0C4CC !default;
 /// fontSize||Font Size|1
-$--avatar-text-font-size: 14px !default;
+$--avatar-text-font-size: 12px !default;
 /// fontSize||Font Size|1
 $--avatar-icon-font-size: 18px !default;
 /// borderRadius||Border|2

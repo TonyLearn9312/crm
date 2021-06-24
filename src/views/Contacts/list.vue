@@ -285,11 +285,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-.el-select-dropdown__item {
-  font-size: 12px;
-}
-</style>
+
 <style lang="scss" >
 #contacts {
   //   padding: 0 15px;
