@@ -11,19 +11,6 @@
         <h3>Activity</h3>
       </header>
       <div class="toolbar">
-        <!-- <el-select
-          :popper-append-to-body="false"
-          v-model="Activity"
-          placeholder="请选择"
-        >
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          >
-          </el-option>
-        </el-select> -->
         <div :class="{ isactive: obj[0].isactive }" @click="toolbarFun(0)">
           Call
         </div>

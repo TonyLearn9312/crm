@@ -36,16 +36,16 @@ const routes = [
             path: 'Leads1',
             name: 'Leads1',
             component: () => import(/* webpackChunkName: "about" */ '../views/Leads/table_root.vue'),
-            redirect: "/Home/Leads/Leads1/list",
+            redirect: "/Home/Leads/Leads1/leadsList",
             children: [
               {
-                path: 'details',
-                name: 'details',
+                path: 'leadsDetails',
+                name: 'leadsDetails',
                 component: () => import(/* webpackChunkName: "about" */ '../views/Leads/details.vue')
               },
               {
-                path: 'list',
-                name: 'list',
+                path: 'leadsList',
+                name: 'leadsList',
                 component: () => import(/* webpackChunkName: "about" */ '../views/Leads/list.vue')
               }
             ],
@@ -88,16 +88,16 @@ const routes = [
             path: 'Users1',
             name: 'Users1',
             component: () => import(/* webpackChunkName: "about" */ '../views/users/table_root.vue'),
-            redirect: "/Home/Users/Users1/list",
+            redirect: "/Home/Users/Users1/UsersList",
             children: [
               {
-                path: 'list',
-                name: 'list',
+                path: 'UsersList',
+                name: 'UsersList',
                 component: () => import(/* webpackChunkName: "about" */ '../views/users/list.vue')
               },
               {
-                path: 'details',
-                name: 'details',
+                path: 'UsersDetails',
+                name: 'UsersDetails',
                 component: () => import(/* webpackChunkName: "about" */ '../views/users/details.vue')
               },
             ],

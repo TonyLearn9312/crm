@@ -17,7 +17,7 @@
         <el-submenu :popper-append-to-body="false" index="Leads">
           <template slot="title">Leads</template>
           <el-menu-item
-            @click="routerto('/Home/Leads/Leads1/list')"
+            @click="routerto('/Home/Leads/Leads1/leadsList')"
             index="Leads1"
             >Table</el-menu-item
           >
@@ -32,7 +32,11 @@
         </el-submenu>
         <el-submenu :popper-append-to-body="false" index="Users">
           <template slot="title">Users</template>
-          <el-menu-item index="Users1" @click="routerto('/Home/Users/Users1/list')">List</el-menu-item>
+          <el-menu-item
+            index="Users1"
+            @click="routerto('/Home/Users/Users1/UsersList')"
+            >List</el-menu-item
+          >
           <!-- <el-menu-item index="4-2">选项2</el-menu-item>
           <el-menu-item index="4-3">选项3</el-menu-item> -->
         </el-submenu>
@@ -148,18 +152,18 @@ export default {
     };
   },
   mounted() {
-      this.activeNameFun(this.$route)
+    this.activeNameFun(this.$route);
     // this.getBreadcrumb();
   },
   watch: {
     $route(index) {
-      this.activeNameFun(index)
+      this.activeNameFun(index);
     },
   },
   methods: {
     activeNameFun(route) {
       let path = route.path.substr(1).split("/");
-      if (path[1] == "Leads" || path[1] == "Contacts") {
+      if (path[1] == "Leads" || path[1] == "Contacts" || path[1] == "Users") {
         this.activeName = path[2];
       } else {
         this.activeName = path[1];
@@ -219,7 +223,6 @@ export default {
   .top {
     width: 100%;
     height: $Topheight;
-    // background: $BackgroundColor;
   }
   .banner {
     width: 100%;
@@ -229,7 +232,6 @@ export default {
     position: relative;
     width: 100%;
     height: calc(100% - #{$Topheight} - #{$gap-width});
-    // background: #000;
     overflow-y: auto;
     .right-sidebar {
       position: absolute;
@@ -238,7 +240,8 @@ export default {
       width: $Sidebar-width;
       height: calc(100% - 30px);
       header {
-        border-bottom: 1px solid $BackgroundColor;
+        display: flex;
+        align-items: center;
         @include boxModel(
           $width: 100%,
           $height: 40px,
@@ -247,58 +250,23 @@ export default {
           $margin: 0,
           $box-sizing: "border-box"
         );
+        border-bottom: 1px solid $BackgroundColor;
+        h3 {
+          padding-left: 20px;
+        }
       }
       box-sizing: border-box;
       > div {
-        // flex: 1;
         height: calc((100% - #{$gap-width}) / 2);
-        border: 1px solid $BackgroundColor;
+        @include border($px: 1px, $color: $BackgroundColor, $radius: 4px);
+        overflow: hidden;
       }
-
       div.box {
         height: calc(100% - 40px);
       }
-
       div.today-tasks {
         margin-bottom: $gap-width;
       }
-    }
-  }
-  .right-sidebar {
-    position: absolute;
-    left: $Sidebar-width + $main-width + $gap-width * 3;
-    font-size: 12px;
-    width: $Sidebar-width;
-    height: calc(100% - 30px);
-    header {
-      display: flex;
-      align-items: center;
-      @include boxModel(
-        $width: 100%,
-        $height: 40px,
-        $background-color: #fff,
-        $padding: 0,
-        $margin: 0,
-        $box-sizing: "border-box"
-      );
-      border-bottom: 1px solid $BackgroundColor;
-      h3 {
-        padding-left: 20px;
-      }
-    }
-    box-sizing: border-box;
-    > div {
-      // flex: 1;
-      height: calc((100% - #{$gap-width}) / 2);
-      border: 1px solid $BackgroundColor;
-    }
-
-    div.box {
-      height: calc(100% - 40px);
-    }
-
-    div.today-tasks {
-      margin-bottom: $gap-width;
     }
   }
 }

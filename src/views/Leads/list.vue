@@ -3,7 +3,10 @@
     <header>
       <div class="header-title">
         <h3 class="leads-tag">Leads</h3>
-        <span class="el-icon-circle-plus"></span>
+        <span
+          @click="addLeadsDialog = !addLeadsDialog"
+          class="el-icon-circle-plus"
+        ></span>
       </div>
       <!-- <div class="condition">
         <p>Last login</p>
@@ -63,6 +66,24 @@
         </el-table-column>
       </el-table>
     </div>
+    <el-dialog
+    :close-on-click-modal="false"
+      width="950px"
+      title="添加Lead"
+      center
+      :visible.sync="addLeadsDialog"
+    >
+      <leads-details-component
+        :sidebarSwitch="true"
+        :editSwitch="false"
+      ></leads-details-component>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="addLeadsDialog = false">取 消</el-button>
+        <el-button type="primary" @click="addLeadsDialog = false"
+          >确 定</el-button
+        >
+      </div>
+    </el-dialog>
     <pagevue
       :pagenum="tableData.length"
       :currentpages="currentpage"
@@ -72,9 +93,14 @@
   </div>
 </template>
 <script>
+import LeadsDetailsComponent from "./details_component.vue";
 export default {
+  components: {
+    LeadsDetailsComponent,
+  },
   data() {
     return {
+      addLeadsDialog: false,
       currentpage: 1,
       pagesize: 14,
       dialogFormVisible: false,
@@ -83,6 +109,7 @@ export default {
         name: [{ required: true, message: "请选择交接人", trigger: "change" }],
       },
       ReplacementTable: [],
+      addLeadsform: {},
       tableData: [
         {
           date: "2016-05-03",
@@ -228,7 +255,7 @@ export default {
   methods: {
     fromchildren(data) {
       this.currentpage = data.currentpage;
-    //   this.changepage(data.currentpage, data.pagesize);
+      //   this.changepage(data.currentpage, data.pagesize);
     },
     deleteRow(index, rows) {
       // console.log(rows);
@@ -272,9 +299,9 @@ export default {
     },
     handleEdit(index, row) {
       console.log(index, row);
-     this.$router.push({ path: '/Home/Leads/Leads1/details' });
-    //   this.form = { name: "", tasks: [], leads: [], contacts: [] };
-    //   this.dialogFormVisible = true;
+      this.$router.push({ path: "/Home/Leads/Leads1/leadsDetails" });
+      //   this.form = { name: "", tasks: [], leads: [], contacts: [] };
+      //   this.dialogFormVisible = true;
     },
     handleDelete(index, row) {
       console.log(index, row);
@@ -317,7 +344,7 @@ export default {
     .el-icon-circle-plus {
       cursor: pointer;
       &:hover {
-        color: aqua;
+        color: $themeColor;
       }
     }
 
