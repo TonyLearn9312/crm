@@ -104,6 +104,32 @@ const routes = [
           },
         ],
       },
+      {
+        path: 'groups',
+        name: 'groups',
+        component: () => import(/* webpackChunkName: "about" */ '../views/groups/groups.vue'),
+        redirect: "/Home/groups/groups1",
+        children: [
+          {
+            path: 'groups1',
+            name: 'groups1',
+            component: () => import(/* webpackChunkName: "about" */ '../views/groups/list_root.vue'),
+            redirect: "/Home/Users/groups1/groupsList",
+            children: [
+              {
+                path: 'groupsList',
+                name: 'groupsList',
+                component: () => import(/* webpackChunkName: "about" */ '../views/groups/lists.vue')
+              },
+              // {
+              //   path: 'UsersDetails',
+              //   name: 'UsersDetails',
+              //   component: () => import(/* webpackChunkName: "about" */ '../views/users/details.vue')
+              // },
+            ],
+          },
+        ],
+      },
     ]
   },
   {

@@ -42,9 +42,13 @@
         </el-submenu>
         <el-submenu :popper-append-to-body="false" index="5">
           <template slot="title">Groups</template>
-          <el-menu-item index="5-1">选项1</el-menu-item>
-          <el-menu-item index="5-2">选项2</el-menu-item>
-          <el-menu-item index="5-3">选项3</el-menu-item>
+          <el-menu-item
+            index="groups1"
+            @click="routerto('/Home/groups/groups1/groupsList')"
+            >List</el-menu-item
+          >
+          <!-- <el-menu-item index="5-2">选项2</el-menu-item>
+          <el-menu-item index="5-3">选项3</el-menu-item> -->
         </el-submenu>
         <el-submenu :popper-append-to-body="false" index="6">
           <template slot="title">Access</template>
@@ -55,7 +59,7 @@
       </el-menu>
     </div>
     <div class="banner"></div>
-    <main>
+    <main class="main">
       <router-view></router-view>
       <div class="right-sidebar">
         <div class="today-tasks">
@@ -227,10 +231,12 @@ export default {
   .banner {
     width: 100%;
     height: $gap-width;
+    //  background: $BackgroundColor;
   }
   main {
     position: relative;
     width: 100%;
+    // background: $BackgroundColor;
     height: calc(100% - #{$Topheight} - #{$gap-width});
     overflow-y: auto;
     .right-sidebar {
