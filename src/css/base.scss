@@ -12,6 +12,9 @@ img {border:0;
 *{
   box-sizing: border-box;
 }
+u{
+  cursor: pointer;
+}
 /*  去掉图片低测默认的3像素空白缝隙，或者用display：block也可以*/
 table { border-collapse:collapse; }
 a {text-decoration:none; }

@@ -60,7 +60,9 @@
     </div>
     <div class="banner"></div>
     <main class="main">
-      <router-view></router-view>
+      <div class="main-router-view">
+        <router-view></router-view>
+      </div>
       <div class="right-sidebar">
         <div class="today-tasks">
           <header @click="routerto('/Home/dashboard/tasks')">
@@ -239,6 +241,12 @@ export default {
     // background: $BackgroundColor;
     height: calc(100% - #{$Topheight} - #{$gap-width});
     overflow-y: auto;
+    .main-router-view {
+      position: absolute;
+      left:$gap-width;
+      width: $Sidebar-width + $main-width + $gap-width ;
+      height: calc(100% - 30px);
+    }
     .right-sidebar {
       position: absolute;
       left: $Sidebar-width + $main-width + $gap-width * 3;

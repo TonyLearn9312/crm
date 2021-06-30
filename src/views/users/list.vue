@@ -67,7 +67,7 @@ export default {
   data() {
     return {
           currentpage: 1,
-      pagesize: 14,
+      pagesize: 13,
       visible: false,
       access: [
         "可以访问全部地区",
@@ -272,7 +272,8 @@ export default {
   // overflow-y: auto;
   //   padding: 0 15px;
   position: absolute;
-  left: $gap-width;
+  left: 0;
+  height: 100%;
   //   @include border($px: 1px, $color: #2c3e50);
   width: $Sidebar-width + $main-width + $gap-width * 1;
   header {

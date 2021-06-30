@@ -121,6 +121,11 @@ const routes = [
                 name: 'groupsList',
                 component: () => import(/* webpackChunkName: "about" */ '../views/groups/lists.vue')
               },
+              {
+                path: 'profile',
+                name: 'profile',
+                component: () => import(/* webpackChunkName: "about" */ '../views/profile/profile.vue')
+              }
               // {
               //   path: 'UsersDetails',
               //   name: 'UsersDetails',

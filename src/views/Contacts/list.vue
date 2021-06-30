@@ -76,7 +76,7 @@ export default {
   data() {
     return {
       currentpage: 1,
-      pagesize: 14,
+      pagesize: 13,
       dialogFormVisible: false,
       formLabelWidth: "120px",
       rules: {
@@ -290,7 +290,7 @@ export default {
 #contacts {
   //   padding: 0 15px;
   position: absolute;
-  left: $gap-width;
+  left: 0;
 
   width: $Sidebar-width + $main-width + $gap-width * 1;
   header {

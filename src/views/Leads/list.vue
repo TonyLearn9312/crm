@@ -67,7 +67,7 @@
       </el-table>
     </div>
     <el-dialog
-    :close-on-click-modal="false"
+      :close-on-click-modal="false"
       width="950px"
       title="添加Lead"
       center
@@ -102,7 +102,7 @@ export default {
     return {
       addLeadsDialog: false,
       currentpage: 1,
-      pagesize: 14,
+      pagesize: 13,
       dialogFormVisible: false,
       formLabelWidth: "120px",
       rules: {
@@ -318,8 +318,8 @@ export default {
 #leads {
   //   padding: 0 15px;
   position: absolute;
-  left: $gap-width;
-
+  left: 0;
+  height: 100%;
   width: $Sidebar-width + $main-width + $gap-width * 1;
   header {
     height: 40px;

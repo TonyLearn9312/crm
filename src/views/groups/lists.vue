@@ -3,7 +3,12 @@
     <div class="activity">
       <header>
         <h3>Groups</h3>
-        <el-button type="primary" size="mini" @click="addGroupDialog = true">
+        <el-button
+          type="primary"
+          v-if="roletype === 1"
+          size="mini"
+          @click="addGroupDialog = true"
+        >
           Add
         </el-button>
         <el-dialog
@@ -87,16 +92,8 @@
               <span class="custom-tree-node" slot-scope="{ node, data }">
                 <span>{{ node.label }}</span>
                 <span>
-                  <!-- <el-button
-                    type="text"
-                    size="mini"
-                    v-if="data.type == 'c'"
-                    @click="() => append(data)"
-                  >
-                    Append
-                  </el-button> -->
                   <span
-                    v-if="data.type == 'g'"
+                    v-if="data.type == 'g' && roletype === 1"
                     class="el-icon-edit"
                     @click="addGroupDialog = true"
                   ></span>
@@ -123,7 +120,7 @@
                     </div>
                     <span
                       slot="reference"
-                      v-if="data.type == 'g'"
+                      v-if="data.type == 'g' && roletype === 1"
                       class="el-icon-close"
                     ></span>
                   </el-popover>
@@ -159,11 +156,15 @@
               style="width: 100%"
             >
               <el-table-column prop="date" label="工号"> </el-table-column>
-              <el-table-column prop="name" label="Name"> </el-table-column>
+              <el-table-column label="Name">
+                <template slot-scope="scope">
+                  <u @click="$routerto('profile')">{{ scope.row.name }}</u>
+                </template>
+              </el-table-column>
               <el-table-column prop="title" label="Title"> </el-table-column>
               <el-table-column prop="role" label="Group role">
               </el-table-column>
-              <el-table-column label="Operaion">
+              <el-table-column v-if="roletype === 1" label="Operaion">
                 <template slot-scope="scope">
                   <el-button
                     size="mini"
@@ -214,9 +215,10 @@ let id = 1000;
 export default {
   data() {
     return {
+      roletype: 1,
       visible: false,
       currentpage: 1,
-      pagesize: 14,
+      pagesize: 13,
       data: [
         {
           id: 1,
@@ -496,11 +498,11 @@ export default {
   },
   methods: {
     group_popover(index) {
-      console.log(this.$refs[`popover8-${index}`]);
+      console.log(this.$refs[`popover8-${index}`].doClose);
       this.$refs[`popover8-${index}`].doClose();
     },
     handleDelete(index) {
-      //   console.log(row);
+      console.log(this.$refs[`popover1-${index}`]);
       this.$refs[`popover1-${index}`].doClose();
       // row.access = row.selectAccess;
       this.$message({
@@ -583,6 +585,7 @@ export default {
 </style>
 <style lang="scss" scoped>
 .Leads-details {
+  height: 100%;
   $Sidebar-width: 330px;
   $toolbar-height: 50px;
   .activity {
@@ -590,14 +593,10 @@ export default {
     transition: 0.5s;
     position: absolute;
     font-size: 12px;
-    left: $gap-width;
+    left: 0;
     @include border($px: 1px, $color: $BackgroundColor, $radius: 4px);
     overflow: hidden;
-    @include boxModel(
-      $width: $Sidebar-width,
-      $height: calc(100% - #{$offset-bottom}),
-      $padding: 0
-    );
+    @include boxModel($width: $Sidebar-width, $height: 100%, $padding: 0);
     .Groups-list {
       padding: 10px 0;
     }
@@ -607,8 +606,8 @@ export default {
     transition: 0.5s;
     position: absolute;
     $default-left: $gap-width * 2 + $Sidebar-width;
-    left: $default-left;
-    height: calc(100% - 30px);
+    left: $Sidebar-width + $gap-width;
+    height: 100%;
     width: 1200px;
     .Formdata {
       height: 100%;

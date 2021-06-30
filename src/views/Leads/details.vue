@@ -108,7 +108,7 @@ export default {
   data() {
     return {
       swtich: true,
-      sidebarSwitch: false,
+      sidebarSwitch: true,
       Activity: "",
       obj: [
         { isactive: false },
@@ -280,6 +280,7 @@ export default {
 <style lang="scss" scoped>
 .Leads-details {
   $toolbar-height: 50px;
+  height: 100%;
   .activity {
     -webkit-transition: -webkit-transform 0.5s;
     transition: 0.5s;
@@ -289,7 +290,7 @@ export default {
     overflow: hidden;
     @include boxModel(
       $width: $Sidebar-width,
-      $height: calc(100% - #{$offset-bottom}),
+      $height: 100%,
       $padding: 0
     );
     .toolbar {
@@ -320,18 +321,18 @@ export default {
     }
   }
   .activity.sidebar-close {
-    left: -$Sidebar-width;
+    left: - ($Sidebar-width+ $gap-width);
   }
   .activity.sidebar-open {
-    left: $gap-width;
+    left: 0;
   }
   .mid-component {
     -webkit-transition: -webkit-transform 0.5s;
     transition: 0.5s;
     position: absolute;
-    $default-left: $gap-width * 2 + $Sidebar-width;
+    $default-left: $gap-width  + $Sidebar-width;
     left: $default-left;
-    height: calc(100% - 30px);
+    height: 100%;
     .Formdata {
       height: 38%;
       margin-bottom: $gap-width;
@@ -382,11 +383,11 @@ export default {
   }
   .mid-component.sidebar-open {
     width: $main-width;
-    left: $gap-width * 2 + $Sidebar-width;
+    left: $gap-width  + $Sidebar-width;
   }
   .mid-component.sidebar-close {
     width: $main-width + $gap-width + $Sidebar-width;
-    left: $gap-width;
+    left: 0;
   }
   .activity,
   .mid-component .saleNote,
