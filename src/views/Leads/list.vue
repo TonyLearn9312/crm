@@ -299,7 +299,7 @@ export default {
     },
     handleEdit(index, row) {
       console.log(index, row);
-      this.$router.push({ path: "/Home/Leads/Leads1/leadsDetails" });
+      this.$router.push({ path: "/Home/Leads/leadsDetails" });
       //   this.form = { name: "", tasks: [], leads: [], contacts: [] };
       //   this.dialogFormVisible = true;
     },

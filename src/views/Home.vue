@@ -5,7 +5,7 @@
       <el-menu
         :default-active="activeName"
         :unique-opened="true"
-        active-text-color="#2C393E"
+        active-text-color="#0ba347"
         class="el-menu-demo"
         mode="horizontal"
         menu-trigger="click"
@@ -16,11 +16,14 @@
         >
         <el-submenu :popper-append-to-body="false" index="Leads">
           <template slot="title">Leads</template>
-          <el-menu-item
-            @click="routerto('/Home/Leads/Leads1/leadsList')"
-            index="Leads1"
-            >Table</el-menu-item
+          <el-menu-item @click="routerto('/Home/Leads/leadsList')" index="Leads"
+            >List</el-menu-item
           >
+          <!-- <el-menu-item
+            @click="routerto('/Home/Leads/leadsDetails')"
+            index="leadsDetails"
+            >details</el-menu-item
+          > -->
         </el-submenu>
         <el-submenu :popper-append-to-body="false" index="Contacts">
           <template slot="title">Contacts</template>
@@ -52,9 +55,11 @@
         </el-submenu>
         <el-submenu :popper-append-to-body="false" index="6">
           <template slot="title">Access</template>
-          <el-menu-item index="6-1">选项1</el-menu-item>
-          <el-menu-item index="6-2">选项2</el-menu-item>
-          <el-menu-item index="6-3">选项3</el-menu-item>
+          <el-menu-item
+            index="access1"
+            @click="routerto('/Home/access/accessList')"
+            >List</el-menu-item
+          >
         </el-submenu>
       </el-menu>
     </div>
@@ -161,19 +166,65 @@ export default {
     this.activeNameFun(this.$route);
     // this.getBreadcrumb();
   },
+  computed: {
+    /**
+     * @msg: 根据路由地址，左侧菜单栏高亮显示的计算属性
+     * @param {}
+     * @return:路由地址（"/路由名字"）
+     */
+    // eslint-disable-next-line vue/return-in-computed-property
+    defaultActive_Nav() {
+      let routpath = this.$route.path;
+      console.log(routpath);
+      this.find(this.nav_menu_data, routpath);
+      if (this.result) {
+        return this.result;
+      } else {
+        // switch (routpath) {
+        //   //添加老师
+        //   case "/teachermanageAdd":
+        //     return "/teachermanage";
+        //   // 学员管理详情
+        //   case "/userListDetail":
+        //     return "/userList";
+        // }
+      }
+    },
+  },
   watch: {
     $route(index) {
       this.activeNameFun(index);
     },
   },
   methods: {
+    find(arr, routePath) {
+      if (!arr) {
+        return;
+      }
+      arr.forEach((item) => {
+        //debugger;
+        if (item.path == routePath) {
+          this.result = item.path;
+        } else {
+          this.find(item.chirldren, routePath);
+        }
+      });
+    },
     activeNameFun(route) {
+      console.log(route);
       let path = route.path.substr(1).split("/");
-      if (path[1] == "Leads" || path[1] == "Contacts" || path[1] == "Users") {
+      if (
+        path[1] == "Leads" ||
+        path[1] == "Contacts" ||
+        path[1] == "Users" ||
+        path[1] == "access" ||
+        path[1] == "groups"
+      ) {
         this.activeName = path[2];
       } else {
         this.activeName = path[1];
       }
+      console.log(this.activeName);
     },
     routerto(num) {
       this.$router.push({ path: num });
@@ -243,8 +294,8 @@ export default {
     overflow-y: auto;
     .main-router-view {
       position: absolute;
-      left:$gap-width;
-      width: $Sidebar-width + $main-width + $gap-width ;
+      left: $gap-width;
+      width: $Sidebar-width + $main-width + $gap-width;
       height: calc(100% - 30px);
     }
     .right-sidebar {

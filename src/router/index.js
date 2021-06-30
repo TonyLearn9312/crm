@@ -30,27 +30,21 @@ const routes = [
         path: 'Leads',
         name: 'Leads',
         component: () => import(/* webpackChunkName: "about" */ '../views/Leads/leads.vue'),
-        redirect: "/Home/Leads/Leads1",
+        redirect: "/Home/Leads/leadsList",
         children: [
           {
-            path: 'Leads1',
-            name: 'Leads1',
-            component: () => import(/* webpackChunkName: "about" */ '../views/Leads/table_root.vue'),
-            redirect: "/Home/Leads/Leads1/leadsList",
-            children: [
-              {
-                path: 'leadsDetails',
-                name: 'leadsDetails',
-                component: () => import(/* webpackChunkName: "about" */ '../views/Leads/details.vue')
-              },
-              {
-                path: 'leadsList',
-                name: 'leadsList',
-                component: () => import(/* webpackChunkName: "about" */ '../views/Leads/list.vue')
-              }
-            ],
+            path: 'leadsDetails',
+            name: 'leadsDetails',
+            component: () => import(/* webpackChunkName: "about" */ '../views/Leads/details.vue')
           },
+          {
+            path: 'leadsList',
+            name: 'leadsList',
+            component: () => import(/* webpackChunkName: "about" */ '../views/Leads/list.vue')
+          }
         ],
+
+
       },
       {
         path: 'Contacts',
@@ -132,6 +126,19 @@ const routes = [
               //   component: () => import(/* webpackChunkName: "about" */ '../views/users/details.vue')
               // },
             ],
+          },
+        ],
+      },
+      {
+        path: 'access',
+        name: 'access',
+        component: () => import(/* webpackChunkName: "about" */ '../views/groups/groups.vue'),
+        redirect: "/Home/access/accessList",
+        children: [
+          {
+            path: 'accessList',
+            name: 'accessList',
+            component: () => import(/* webpackChunkName: "about" */ '../views/access/accessList.vue')
           },
         ],
       },

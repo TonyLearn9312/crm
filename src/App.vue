@@ -4,11 +4,13 @@
   </div>
 </template>
 <script>
+import {getLanguageJson} from "@/api/api"
 export default {
   data () {
     return {}
   },
   created () {
+
     //在页面加载时读取sessionStorage里的状态信息
     if (window.sessionStorage.getItem("store") ) {
       this.$store.replaceState(Object.assign({}, JSON.parse(window.sessionStorage.getItem("store")), this.$store.state))
@@ -17,6 +19,7 @@ export default {
     window.addEventListener("beforeunload",()=>{
       window.sessionStorage.setItem("store", JSON.stringify(this.$store.state))
     })
+
     console.log(this.$store.state)
   }
 }

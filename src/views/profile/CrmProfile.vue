@@ -47,7 +47,7 @@
       padding-left: 20px;
     }
   }
-    .box {
+  .box {
     padding: 20px;
     height: calc(100%-#{$header-hight});
     width: 100%;
