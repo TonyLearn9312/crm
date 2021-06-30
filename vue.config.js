@@ -1,7 +1,19 @@
 const path = require("path");
 const resolve = dir => path.join(__dirname, dir);
 module.exports = {
-
+  devServer: {
+    proxy: {
+      '/local': {
+        target: 'http://18.167.144.15:8680',
+        pathRewrite: { '^/local': '' },
+        ws: false,
+        secure: false,
+        changeOrigin: true
+      },
+    },
+    disableHostCheck: true,
+    hot: true
+  },
   // pages: {
   //   index: {
   //     // page 默认的入口
